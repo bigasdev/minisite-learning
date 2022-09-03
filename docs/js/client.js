@@ -1043,6 +1043,7 @@ var App = function() {
 	this.jSite.append("New test");
 	this.jSite.append("New test again!");
 	this.notify("test!");
+	this.startText();
 };
 App.__name__ = "App";
 App.__super__ = dn_Process;
@@ -1052,6 +1053,11 @@ App.prototype = $extend(dn_Process.prototype,{
 		if(App.ME == this) {
 			App.ME = null;
 		}
+	}
+	,startText: function() {
+		var jText = $("<div id=\"text\"/>");
+		this.jSite.append(jText);
+		jText.text("text");
 	}
 	,notify: function(str) {
 		this.jBody.find("#notif").remove();

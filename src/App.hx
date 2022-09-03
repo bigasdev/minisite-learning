@@ -1,3 +1,4 @@
+import h3d.anim.Skin.Joint;
 import SiteProcess;
 
 class App extends dn.Process {
@@ -17,6 +18,7 @@ class App extends dn.Process {
 		jSite.append("New test");
 		jSite.append("New test again!");
 		notify("test!");
+		startText();
 	}
 
 	override function onDispose() {
@@ -25,6 +27,11 @@ class App extends dn.Process {
 			ME = null;
 	}
 
+	function startText(){
+		var jText = new J('<div id="text"/>');
+		jSite.append(jText);
+		jText.text('text');
+	}
 	/**
 		Show a quick text notification that fades out automatically
 	**/
