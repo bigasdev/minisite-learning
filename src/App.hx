@@ -14,8 +14,9 @@ class App extends dn.Process {
 		jDoc = new J( js.Browser.document );
 		jBody = new J("body");
 		jSite = jBody.find("#site");
-
-		jSite.append("Up and ready.");
+		jSite.append("New test");
+		jSite.append("New test again!");
+		notify("test!");
 	}
 
 	override function onDispose() {
