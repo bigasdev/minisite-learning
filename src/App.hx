@@ -1,3 +1,4 @@
+import h2d.Console;
 import h3d.anim.Skin.Joint;
 import SiteProcess;
 
@@ -29,6 +30,9 @@ class App extends dn.Process {
 
 	function startText(){
 		var jText = new J('<div id="text"/>');
+		jText.click( _->{
+			trace('test');
+		});
 		jSite.append(jText);
 		jText.text('text');
 	}

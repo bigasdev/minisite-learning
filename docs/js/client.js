@@ -1056,6 +1056,9 @@ App.prototype = $extend(dn_Process.prototype,{
 	}
 	,startText: function() {
 		var jText = $("<div id=\"text\"/>");
+		jText.click(function(_) {
+			haxe_Log.trace("test",{ fileName : "src/App.hx", lineNumber : 34, className : "App", methodName : "startText"});
+		});
 		this.jSite.append(jText);
 		jText.text("text");
 	}
