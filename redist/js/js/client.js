@@ -1039,10 +1039,8 @@ var App = function() {
 	App.ME = this;
 	this.jDoc = $(window.document);
 	this.jBody = $("body");
+	this.jLearning = new Learning();
 	this.jSite = this.jBody.find("#site");
-	this.jSite.append("New test");
-	this.jSite.append("New test again!");
-	this.notify("test!");
 	this.startText();
 };
 App.__name__ = "App";
@@ -1055,12 +1053,22 @@ App.prototype = $extend(dn_Process.prototype,{
 		}
 	}
 	,startText: function() {
-		var jText = $("<div id=\"text\"/>");
+		var _gthis = this;
+		var jText = $("<button id=\"test-button\">Add element!</button>");
+		var jButton = $("<button id=\"test-button\">Check elements!</button>");
 		jText.click(function(_) {
-			haxe_Log.trace("test",{ fileName : "src/App.hx", lineNumber : 34, className : "App", methodName : "startText"});
+			var name = window.prompt("Enter the name to add!");
+			if(name == null) {
+				return;
+			}
+			_gthis.jLearning.addElement(name);
+			_gthis.notify("Added " + name + " to the learning class!");
+		});
+		jButton.click(function(_) {
+			_gthis.jLearning.checkElements();
 		});
 		this.jSite.append(jText);
-		jText.text("text");
+		this.jSite.append(jButton);
 	}
 	,notify: function(str) {
 		this.jBody.find("#notif").remove();
@@ -1235,6 +1243,27 @@ Lambda.array = function(it) {
 		a.push(i1);
 	}
 	return a;
+};
+var Learning = function() {
+	this.myStrings = [];
+	haxe_Log.trace("Created a new learning class!",{ fileName : "src/Learning.hx", lineNumber : 5, className : "Learning", methodName : "new"});
+};
+Learning.__name__ = "Learning";
+Learning.prototype = {
+	addElement: function(element) {
+		haxe_Log.trace("Adding : " + element,{ fileName : "src/Learning.hx", lineNumber : 8, className : "Learning", methodName : "addElement"});
+		this.myStrings.push(element);
+	}
+	,checkElements: function() {
+		var _g = 0;
+		var _g1 = this.myStrings;
+		while(_g < _g1.length) {
+			var element = _g1[_g];
+			++_g;
+			haxe_Log.trace(element,{ fileName : "src/Learning.hx", lineNumber : 13, className : "Learning", methodName : "checkElements"});
+		}
+	}
+	,__class__: Learning
 };
 Math.__name__ = "Math";
 var Reflect = function() { };

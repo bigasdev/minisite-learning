@@ -1,3 +1,4 @@
+import hxd.System;
 import h2d.Console;
 import h3d.anim.Skin.Joint;
 import SiteProcess;
@@ -8,6 +9,7 @@ class App extends dn.Process {
 	public var jDoc : J;
 	public var jBody : J;
 	public var jSite : J;
+	public var jLearning : Learning;
 
 	public function new() {
 		super();
@@ -15,10 +17,8 @@ class App extends dn.Process {
 		ME = this;
 		jDoc = new J( js.Browser.document );
 		jBody = new J("body");
+		jLearning = new Learning();
 		jSite = jBody.find("#site");
-		jSite.append("New test");
-		jSite.append("New test again!");
-		notify("test!");
 		startText();
 	}
 
@@ -29,12 +29,19 @@ class App extends dn.Process {
 	}
 
 	function startText(){
-		var jText = new J('<div id="text"/>');
+		var jText = new J('<button id="test-button">Add element!</button>');
+		var jButton = new J('<button id="test-button">Check elements!</button>');
 		jText.click( _->{
-			trace('test');
+			var name = js.Browser.window.prompt("Enter the name to add!");
+			if(name == null)return;
+			jLearning.addElement(name);
+			notify('Added $name to the learning class!');
+		});
+		jButton.click(_->{
+			jLearning.checkElements();
 		});
 		jSite.append(jText);
-		jText.text('text');
+		jSite.append(jButton);
 	}
 	/**
 		Show a quick text notification that fades out automatically
