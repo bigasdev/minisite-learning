@@ -31,6 +31,11 @@ class App extends dn.Process {
 	function startText(){
 		var jText = new J('<button id="test-button">Add element!</button>');
 		var jButton = new J('<button id="test-button">Check elements!</button>');
+		var jType = new J('<input type=file />');
+		jType.change(_->{
+			notify(_.result);
+			trace(jType.html);
+		});
 		jText.click( _->{
 			var name = js.Browser.window.prompt("Enter the name to add!");
 			if(name == null)return;
@@ -42,6 +47,7 @@ class App extends dn.Process {
 		});
 		jSite.append(jText);
 		jSite.append(jButton);
+		jSite.append(jType);
 	}
 	/**
 		Show a quick text notification that fades out automatically

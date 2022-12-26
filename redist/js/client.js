@@ -1056,6 +1056,11 @@ App.prototype = $extend(dn_Process.prototype,{
 		var _gthis = this;
 		var jText = $("<button id=\"test-button\">Add element!</button>");
 		var jButton = $("<button id=\"test-button\">Check elements!</button>");
+		var jType = $("<input type=file />");
+		jType.change(function(_) {
+			_gthis.notify(_.result);
+			haxe_Log.trace($bind(jType,jType.html),{ fileName : "src/App.hx", lineNumber : 37, className : "App", methodName : "startText"});
+		});
 		jText.click(function(_) {
 			var name = window.prompt("Enter the name to add!");
 			if(name == null) {
@@ -1069,6 +1074,7 @@ App.prototype = $extend(dn_Process.prototype,{
 		});
 		this.jSite.append(jText);
 		this.jSite.append(jButton);
+		this.jSite.append(jType);
 	}
 	,notify: function(str) {
 		this.jBody.find("#notif").remove();
